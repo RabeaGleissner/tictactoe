@@ -5,3 +5,36 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.delete_all
+u1 = User.create!(password: "password", email: "user@tic.de", description: "super enthusiastic TTT player", name: "Fred")
+u2 = User.create!(password: "password", email: "user@tac.de", description: "Ex TTT world champion. I will crush you.", name: "Wilma")
+u3 = User.create!(password: "password", email: "user@toe.de", description: "My first time playing TTT on my new computer.", name: "Barney")
+
+Match.delete_all
+m1 = Match.create!(player_x_id: u1.id, player_o_id: u2.id)
+
+Move.delete_all
+move1 = Move.create!(user_id: u1.id, match_id: m1.id, position: 8, value: 'x')
+move2 = Move.create!(user_id: u2.id, match_id: m1.id, position: 9, value: 'o')
+
+Match.delete_all
+m2 = Match.create!(player_x_id: u1.id, player_o_id: u2.id)
+
+move1 = Move.create!(user_id: u1.id, match_id: m2.id, position: 7, value: 'x')
+move2 = Move.create!(user_id: u2.id, match_id: m2.id, position: 1, value: 'o')
+move3 = Move.create!(user_id: u1.id, match_id: m2.id, position: 8, value: 'x')
+move4 = Move.create!(user_id: u2.id, match_id: m2.id, position: 2, value: 'o')
+move5 = Move.create!(user_id: u1.id, match_id: m2.id, position: 9, value: 'x')
+move6 = Move.create!(user_id: u2.id, match_id: m2.id, position: 3, value: 'o')
+move7 = Move.create!(user_id: u1.id, match_id: m2.id, position: 4, value: 'x')
+
+
+
+
+
+
+
+
+
+
+
