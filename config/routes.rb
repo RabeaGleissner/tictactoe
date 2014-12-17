@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   
   devise_for :users
+
   root "home#index"
 
-  resources :matches
-  resources :moves
   resources :users
-  
-  post '/matches/:id/match', to: 'matches#new_match'
+  resources :matches 
+
+  post '/matches/:id/make_move/:position', to: 'matches#new_move', as: 'make_move'
+
+
 end

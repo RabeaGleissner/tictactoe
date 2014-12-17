@@ -1,0 +1,35 @@
+<h2>Match between player_x and player_o</h2>
+
+This page will show the actual match.
+<br>
+<br>
+
+
+
+ <table>
+   <tr> 
+    <td>
+      <% if @match.move_for_position(1) %>
+      <%= @match.move_for_position(1).value %>
+      <% else %>
+      <%= link_to "move here", '' %>
+      <% end %>
+    </td>
+    <td>2</td>
+    <td>3</td>
+  </tr>
+   <tr> 
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+   <tr> 
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+ </table>
+
+
+ 

@@ -9,6 +9,8 @@ class MovesController < ApplicationController
     @move = Move.new
   end
 
+  
+
   def create
     user = current_user
     match = Match.find(params[:id])

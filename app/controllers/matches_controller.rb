@@ -7,29 +7,32 @@ class MatchesController < ApplicationController
   end
 
   def new
-
+    @match = Match.new
   end
 
-  def new_match
+def new_move
+  @match.moves.create!(user_id: current_user.id, position: params[:position])
+  redirect_to @match
+  
+end
 
-    player_x = current_user.id
-    player_o = User.first.id #will come from params later
-
-    @match = Match.create(player_x_id: player_x, player_o_id: player_o)
-
-    puts "#{current_user.name}, you are Player x. #{User.first.id}, you are Player o."
-
+  def create
+    @match = Match.new(match_params)
+    @match.player_x_id = current_user.id
+    @match.save
+    redirect_to(@match)
   end
 
 
-
-
-
+  def show
+    @match = Match.new
+    #@match = Match.find(params[:id])
+  end
 
 
   private
   def match_params
-    params.require(:match).permit(:player_x, :player_o, :winner_id, :loser_id, :completed)
+    params.require(:match).permit(:player_o_id)
   end
 
 end

@@ -4,71 +4,74 @@ class Match < ActiveRecord::Base
   belongs_to :player_o, class_name: 'User', foreign_key: 'player_o_id'
   belongs_to :winner, class_name: 'User'
 
+  def move_for_position(position)
+    moves.find_by(position: position)
+  end
+
   def players_ids
     [player_x_id, player_o_id]
   end
 
-  def match_over
-    check_if_drawn || check_if_won
+  def match_active
+    !winner_id && moves.count < 9
   end
 
+  # def match_over
+  #   check_if_drawn || check_if_won
+  # end
+
   def check_if_drawn
-    if moves.count == 9 
+    if moves.count == 9 && !winner_id
+      self.completed = true
+      save
     end
   end
 
   def check_if_won
-    win_array1 = [1,2,3]
-    win_array2 = [4,5,6]
-    win_array3 = [7,8,9]
-    win_array4 = [1,4,7]
-    win_array5 = [2,5,8]
-    win_array6 = [3,6,9]
-    win_array7 = [1,5,9]
-    win_array8 = [3,5,7]
+    puts 'inside win check'
+    win_arrays = [ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
 
-if moves.any?
-    if
-      intersection = (moves.map { |move| move.position }&win_array1)
-      intersection.count == 3
-    elsif
-      intersection = (@match.moves.map { |move| move.position }&win_array2)
-      intersection.count == 3
-    elsif
-      intersection = (@match.moves.map { |move| move.position }&win_array3)
-      intersection.count == 3
-    elsif
-      intersection = (@match.moves.map { |move| move.position }&win_array4)
-      intersection.count == 3
-    elsif
-      intersection = (@match.moves.map { |move| move.position }&win_array5)
-      intersection.count == 3
-    elsif
-      intersection = (@match.moves.map { |move| move.position }&win_array6)
-      intersection.count == 3
-    elsif
-      intersection = (@match.moves.map { |move| move.position }&win_array7)
-      intersection.count == 3
-    elsif
-      intersection = (@match.moves.map { |move| move.position }&win_array8)
-      intersection.count == 3
-    else
+    player_x_moves = moves.where(user_id: player_x_id) 
+    player_o_moves = moves.where(user_id: player_o_id)
+
+    player_x_positions = player_x_moves.map do
+      |move| move.position end
+      player_o_positions = player_o_moves.map do
+       |move| move.position end
+
+       win_arrays.each do  |win_array| 
+
+         intersection_x = (player_x_positions & win_array)
+         intersection_o = (player_o_positions & win_array)
+
+         if intersection_x.count == 3
+          puts 'x has won'
+          self.winner_id = player_x_id
+          self.completed = true
+          save
+          return true
+        elsif intersection_o.count == 3
+          puts 'o has won'
+          self.winner_id = player_o_id
+          self.completed = true
+          save
+          return true
+        end
+      end
       false
     end
-  end
-end
 
-  def winner_id
-    if check_if_won == true
-      winner_id = @match.moves.user_id
-    end
-  end
+    # def winner_id
+    #   if check_if_won == true
+    #     winner_id = @match.moves.user_id
+    #   end
+    # end
 
-  def loser_id
-    if check_if_won == true
-      loser_id = @match.moves.last.user_id
-    end
-  end
+    # def loser_id
+    #   if check_if_won == true
+    #     loser_id = @match.moves.last.user_id
+    #   end
+    # end
 
 
   # def new_match(player_x, player_o)
