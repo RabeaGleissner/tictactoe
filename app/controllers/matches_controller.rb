@@ -11,9 +11,9 @@ class MatchesController < ApplicationController
   end
 
 def new_move
-  @match.moves.create!(user_id: current_user.id, position: params[:position])
+  @match = Match.find(params[:id])
+  @match.moves.create!(user_id: current_user.id, position: params[:position], value: @match.value_for_player(current_user))
   redirect_to @match
-  
 end
 
   def create
@@ -25,8 +25,8 @@ end
 
 
   def show
-    @match = Match.new
-    #@match = Match.find(params[:id])
+    # @match = Match.new
+    @match = Match.find(params[:id])
   end
 
 

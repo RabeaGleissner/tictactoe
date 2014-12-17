@@ -4,6 +4,17 @@ class Match < ActiveRecord::Base
   belongs_to :player_o, class_name: 'User', foreign_key: 'player_o_id'
   belongs_to :winner, class_name: 'User'
 
+  def value_for_player(user)
+    case 
+    when user == player_x
+      'x'
+    when user == player_o
+      'o'
+    else
+      raise 'Invalid player'
+    end
+  end
+
   def move_for_position(position)
     moves.find_by(position: position)
   end

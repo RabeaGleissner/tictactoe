@@ -1,10 +1,9 @@
-<h2>Match between player_x and player_o</h2>
+<h2>Match between <%= @match.player_x.name %> (X) and <%= @match.player_o.name %> (O)</h2>
 
-This page will show the actual match.
-<br>
 <br>
 
 
+<br>
 
  <table>
    <tr> 
@@ -12,21 +11,67 @@ This page will show the actual match.
       <% if @match.move_for_position(1) %>
       <%= @match.move_for_position(1).value %>
       <% else %>
-      <%= link_to "move here", '' %>
+      <%= link_to "move here", make_move_path(@match, position: 1), method: :post %>
       <% end %>
     </td>
-    <td>2</td>
-    <td>3</td>
+
+    <td> <% if @match.move_for_position(2) %>
+      <%= @match.move_for_position(2).value %>
+      <% else %>
+      <%= link_to "move here", make_move_path(@match, position: 2), method: :post %>
+      <% end %>
+    </td>
+    <td><% if @match.move_for_position(3) %>
+      <%= @match.move_for_position(3).value %>
+      <% else %>
+      <%= link_to "move here", make_move_path(@match, position: 3), method: :post %>
+      <% end %>
+    </td>
   </tr>
    <tr> 
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><% if @match.move_for_position(4) %>
+      <%= @match.move_for_position(4).value %>
+      <% else %>
+      <%= link_to "move here", make_move_path(@match, position: 4), method: :post %>
+      <% end %>
+    </td>
+
+    <td><% if @match.move_for_position(5) %>
+      <%= @match.move_for_position(5).value %>
+      <% else %>
+      <%= link_to "move here", make_move_path(@match, position: 5), method: :post %>
+      <% end %>
+    </td>
+
+    <td><% if @match.move_for_position(6) %>
+      <%= @match.move_for_position(6).value %>
+      <% else %>
+      <%= link_to "move here", make_move_path(@match, position: 6), method: :post %>
+      <% end %>
+    </td>
   </tr>
    <tr> 
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>
+      <% if @match.move_for_position(7) %>
+            <%= @match.move_for_position(7).value %>
+            <% else %>
+            <%= link_to "move here", make_move_path(@match, position: 7), method: :post %>
+            <% end %>
+    </td>
+    <td>
+      <% if @match.move_for_position(8) %>
+            <%= @match.move_for_position(8).value %>
+            <% else %>
+            <%= link_to "move here", make_move_path(@match, position: 8), method: :post %>
+            <% end %>
+    </td>
+    <td>
+      <% if @match.move_for_position(9) %>
+            <%= @match.move_for_position(9).value %>
+            <% else %>
+            <%= link_to "move here", make_move_path(@match, position: 9), method: :post %>
+            <% end %>
+    </td>
   </tr>
 
  </table>
