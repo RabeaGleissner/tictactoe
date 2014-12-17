@@ -16,14 +16,22 @@
 
  body {
    padding: 20px;
- }
+   font-family: 'Amaranth', sans-serif;
+   /*background-image: url(http://thespiritscience.net/wp-content/uploads/2014/11/FREE_HUGS_in_Hibiyakoen_Tokyo_Prefecture.jpg);*/
+    }
 
  nav li {
    display: inline-block;
    padding-right:10px;
-
  }
 
  nav ul {
    padding-left:0px;
+ }
+
+ .wrapper {
+  margin: 0 auto;
+  width: 600px;
+  background-color: rgba(245,255,250,0.8);
+  padding: 20px;
  }

@@ -1,7 +1,17 @@
 <h2>Match between <%= @match.player_x.name %> (X) and <%= @match.player_o.name %> (O)</h2>
 
+
 <br>
 
+<% @match.moves.map do |move|%>
+<% if move.errors.any? %>
+<h3><%= pluralize(move.errors.count, "error") %> prohibited this move from being saved:</h3>
+<ul>
+<% move.errors.full_messages.each do |message| %>
+<% end %>
+  <li><% message %></li>
+<% end %>
+<% end %>
 
 <br>
 

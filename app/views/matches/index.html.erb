@@ -8,20 +8,23 @@ This page will show a list of the user's matches.
 <table>
   
   <tr>
-    <th>With who?</th> <!-- user_id which is not my own -->
-    <th>When?</th>   
-    <th>Outcome</th> <!-- if my id equals loser_id, display loser. if my id equals winner_id, display winner. -->
+    <th>Who was playing?</th> <!-- user_id which is not my own -->
+    <th>How long ago?</th>   
+    <th>Name of winner</th> <!-- if my id equals loser_id, display loser. if my id equals winner_id, display winner. -->
   </tr>
 
+<p>Matches I have won :)</p>
+  <% if @winner_match %>
+  <% @winner_match.map do |match| %>
 
-  <% if @matches %>
-  <% @matches.each do |match| %>
-  <% end %>
   <tr>
-    <td><%= %></td>
-    <td><%= @match.created_on %></td>
-    <td></td>
+    <td><%= name = User.find(user_id = match.player_x_id) %></td>
+    <td><%= time_ago_in_words(match.created_at)  %></td>
+    <td><% winner = User.find(user_id = match.winner_id)%>
+      <%= winner.name %>
+    </td>
     <% end %> 
+    <% end %>
   </tr>
 
 </table>

@@ -3,7 +3,7 @@ class MatchesController < ApplicationController
 
 
   def index
-      @match = Match.where(user_id: current_user.id)
+      @winner_match = Match.where(winner_id: current_user.id)
   end
 
   def new
@@ -12,7 +12,15 @@ class MatchesController < ApplicationController
 
 def new_move
   @match = Match.find(params[:id])
-  @match.moves.create!(user_id: current_user.id, position: params[:position], value: @match.value_for_player(current_user))
+  @moves = @match.moves.new(user_id: current_user.id, position: params[:position], value: @match.value_for_player(current_user))
+  if @moves.save
+    format.html { redirect_to @match, notice: 'Move list was successfully updated.' }
+  else
+    puts "there are errors!"
+    
+
+    #format.html { redirect_to @match, notice: 'There are errors!' }
+  end
   redirect_to @match
 end
 
@@ -25,7 +33,6 @@ end
 
 
   def show
-    # @match = Match.new
     @match = Match.find(params[:id])
   end
 
