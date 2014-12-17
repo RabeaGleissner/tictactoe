@@ -8,8 +8,21 @@
 </head>
 <body>
 
+  <nav>
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+      <li> <%= link_to 'Leaderboard', users_path %></li>
+      
+      <% if user_signed_in? %>
+      <li><%= link_to 'My match history', matches_path %></li>
+      <li><%= link_to 'My profile', user_path(current_user.id) %></li>
+      <%end%>
+    </ul>
+  </nav>
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+
 
 <%= yield %>
 

@@ -1,0 +1,19 @@
+<h2>Leaderboard</h2>
+
+This page will contain a list of all users and the number of their wins in descending order.
+
+<% @users.each do |user| %>
+
+<table>
+  <tr>
+  <th>Name</th>
+  <th>Wins</th>
+  </tr>
+  <tr>
+  <td><%= user.name %></td>
+  <td><%#= user.winner_id.count %></td>
+  </tr>
+</table>
+
+
+<% end %>

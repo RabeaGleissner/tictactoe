@@ -15,54 +15,60 @@ class Match < ActiveRecord::Base
   def check_if_drawn
     if moves.count == 9 
     end
+  end
 
-    def check_if_won
-      win_array1 = [1,2,3]
-      win_array2 = [4,5,6]
-      win_array3 = [7,8,9]
-      win_array4 = [1,4,7]
-      win_array5 = [2,5,8]
-      win_array6 = [3,6,9]
-      win_array7 = [1,5,9]
-      win_array8 = [3,5,7]
-      if
-        intersection = (@match.moves.map { |move| move.position }&win_array1)
-        intersection.count == 3
-      elsif
-        intersection = (@match.moves.map { |move| move.position }&win_array2)
-        intersection.count == 3
-      elsif
-        intersection = (@match.moves.map { |move| move.position }&win_array3)
-        intersection.count == 3
-      elsif
-        intersection = (@match.moves.map { |move| move.position }&win_array4)
-        intersection.count == 3
-      elsif
-        intersection = (@match.moves.map { |move| move.position }&win_array5)
-        intersection.count == 3
-      elsif
-        intersection = (@match.moves.map { |move| move.position }&win_array6)
-        intersection.count == 3
-      elsif
-        intersection = (@match.moves.map { |move| move.position }&win_array7)
-        intersection.count == 3
-      elsif
-        intersection = (@match.moves.map { |move| move.position }&win_array8)
-        intersection.count == 3
-      else
-        false
-      end
+  def check_if_won
+    win_array1 = [1,2,3]
+    win_array2 = [4,5,6]
+    win_array3 = [7,8,9]
+    win_array4 = [1,4,7]
+    win_array5 = [2,5,8]
+    win_array6 = [3,6,9]
+    win_array7 = [1,5,9]
+    win_array8 = [3,5,7]
+
+if moves.any?
+    if
+      intersection = (moves.map { |move| move.position }&win_array1)
+      intersection.count == 3
+    elsif
+      intersection = (@match.moves.map { |move| move.position }&win_array2)
+      intersection.count == 3
+    elsif
+      intersection = (@match.moves.map { |move| move.position }&win_array3)
+      intersection.count == 3
+    elsif
+      intersection = (@match.moves.map { |move| move.position }&win_array4)
+      intersection.count == 3
+    elsif
+      intersection = (@match.moves.map { |move| move.position }&win_array5)
+      intersection.count == 3
+    elsif
+      intersection = (@match.moves.map { |move| move.position }&win_array6)
+      intersection.count == 3
+    elsif
+      intersection = (@match.moves.map { |move| move.position }&win_array7)
+      intersection.count == 3
+    elsif
+      intersection = (@match.moves.map { |move| move.position }&win_array8)
+      intersection.count == 3
+    else
+      false
     end
+  end
+end
 
-    def winner_id
-      if check_if_won == true
-        winner_id = @match.moves.user_id
-      end
+  def winner_id
+    if check_if_won == true
+      winner_id = @match.moves.user_id
+    end
+  end
 
-      def loser_id
-        if check_if_won == true
-          loser_id = @match.moves.last.user_id
-        end
+  def loser_id
+    if check_if_won == true
+      loser_id = @match.moves.last.user_id
+    end
+  end
 
 
   # def new_match(player_x, player_o)
@@ -72,7 +78,5 @@ class Match < ActiveRecord::Base
   # def add_move(user, position, value)
   #   Move.create(user_id: user.id, match_id: id, position: position, value: value)
   # end
-
-
 
 end

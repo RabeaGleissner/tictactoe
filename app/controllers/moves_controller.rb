@@ -1,5 +1,5 @@
 class MovesController < ApplicationController
-
+  before_action :authenticate_user!
 
   def index
     @move = Move.all

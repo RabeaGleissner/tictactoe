@@ -1,11 +1,13 @@
 class MatchesController < ApplicationController
+  before_action :authenticate_user!
+
 
   def index
-    @match = Match.find(current_user)
+      @match = Match.where(user_id: current_user.id)
   end
 
   def new
-    
+
   end
 
   def new_match
@@ -25,7 +27,7 @@ class MatchesController < ApplicationController
 
 
 
-private
+  private
   def match_params
     params.require(:match).permit(:player_x, :player_o, :winner_id, :loser_id, :completed)
   end

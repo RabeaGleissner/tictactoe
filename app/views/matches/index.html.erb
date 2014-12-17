@@ -1,0 +1,26 @@
+<h2>My match history</h2>
+
+This page will show a list of the user's matches.
+
+<br> <br>
+
+<table>
+  
+  <tr>
+    <th>With who?</th> <!-- user_id which is not my own -->
+    <th>When?</th>   
+    <th>Outcome</th> <!-- if my id equals loser_id, display loser. if my id equals winner_id, display winner. -->
+  </tr>
+
+
+  <% if @matches %>
+  <% @matches.each do |match| %>
+  <% end %>
+  <tr>
+    <td><%= %></td>
+    <td><%= @match.created_on %></td>
+    <td></td>
+    <% end %> 
+  </tr>
+
+</table>

@@ -1,0 +1,10 @@
+<h2>Edit profile details</h2>
+
+<%= form_for @user do |f| %>
+<%= render partial: 'form', locals: { f: f }%>
+
+<br>
+  <%= f.submit 'Update' %>
+  <% end %>
+
+  <%= link_to 'Go back', user_path %>
