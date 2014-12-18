@@ -1,45 +1,64 @@
-<h2>My match history</h2>
+<h2>My matches</h2>
+
+<% if @incomplete_matches.any?%>
+<h3>Matches in progress</h3>
+<table>
+  <tr>
+    <td><strong>Player X</strong></td>
+    <td><strong>Started...</strong></td>   
+    <td><strong>Player O</strong></td>
+    <td></td>
+  </tr>
+
+  <% @incomplete_matches.map do |match| %>
+  <tr>
+    <td><%= User.find(match.player_x_id).name %>
+      <td><%= time_ago_in_words(match.created_at)  %> ago</td>
+      <td><%= User.find(match.player_o_id).name %></td>
+      <td><%= link_to 'Resume', match %></td>
+  <% end %> 
+    </tr>
+  </table>
+  <% else %>
+  <p>You have no current matches!</p> 
+<% end %>  
+
 
 <% if @winner_match.any? %>
-<h3>Matches I have won :)</h3>
-<table>
-  <tr>
-    <td>Loser</td> 
-    <td>How long ago?</td>   
-    <td>Name of winner</td> 
-  </tr>
-
-  <% @winner_match.map do |match| %>
-  <tr>
-    <td><%= User.find(match.loser_id).name%></td>
-    <td><%= time_ago_in_words(match.created_at)  %></td>
-    <td><%= User.find(match.winner_id).name %>
-    </td>
+  <h3>Matches you have won :)</h3>
+  <table>
+    <tr>
+      <td><strong>How long ago?</strong></td>   
+      <td><strong>Played against?</strong></td>
+    </tr>
+    <% @winner_match.map do |match| %>
+    <tr>
+      <td><%= time_ago_in_words(match.created_at)  %></td>
+      <td><%= User.find(match.loser_id).name %></td>
     <% end %>  
-  </tr>
-</table>
+    </tr>
+  </table>
+  <% else %>
+  <p>You have not won any matches! *hugs* </p>
+<% end %>
 
-<h3>Matches I have lost :(</h3>
-<table>
-  <tr>
-    <td>Winner</td> 
-    <td>How long ago?</td>   
-    <td>Name of winner</td>
-  </tr>
-
-  <% if @loser_match %>
-  <% @loser_match.map do |match| %>
-
-  <tr>
-    <td><%= User.find(match.loser_id).name%></td>
+<% if @loser_match.any? %>
+  <h3>Matches you have lost :(</h3>
+  <table>
+    <tr>
+     <td><strong>How long ago?</strong></td>   
+     <td><strong>Played against?</strong></td>
+    </tr>
+   <% if @loser_match %>
+   <% @loser_match.map do |match| %>
+   <tr>
     <td><%= time_ago_in_words(match.created_at)  %></td>
-    <td><%= User.find(match.winner_id).name %>
-
-    </td>
+    <td><%= User.find(match.winner_id).name %></td>
+   </tr>
     <% end %> 
-    <% end %>
     <% else %>
-    <p>You haven't played any matches! </p>
+    <p>You have not lost any matches! *kisses* </p>
     <% end %>
   </tr>
 </table>
+<% end %>

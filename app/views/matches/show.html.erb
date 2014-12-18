@@ -1,90 +1,95 @@
 <h2>Match between <%= @match.player_x.name %> (X) and <%= @match.player_o.name %> (O)</h2>
 
+<% if @move && @move.errors.any? == false %>
+<h3>Click to make your next move!</h3>
+<% elsif @move && @move.errors.any? == true %>
+<h3>Uh, oh...</h3>
+<%elsif %>
+<h3>Player X will start.</h3>
+<% end %>
 
-<br>
 <!-- error messages start  -->
 <% if @move && @move.errors.any? && @match.match_active %>
-  <h3>Oh no! <%= pluralize(@move.errors.count, "error") %> occured.</h3>
-  <ul>
+ <h3>
     <% @move.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+     <%= message %></h3>
     <% end %>
-  </ul>
 <% end %>
 
 <% if @match.winner_id && @match.winner_id == current_user.id %>
-<h2><%= "Well done, #{User.find(@match.winner_id).name}, you won the match! Extra hugs and kisses for you."%></h2>
+<h2><%= "Well done, #{User.find(@match.winner_id).name}, you won! *hugs and kisses*"%></h2>
 <% elsif @match.winner_id && @match.winner_id != current_user.id %>
 <h2><%= "Sorry, you lost... *hugs*" %></h2>
+<% elsif @match.completed == true && @match.winner_id == nil  %>
+<h2><%= "It's a draw! *kisses*" %></h2>
 <% end %>
 <br>
 
 <!-- board with moves below -->
-<table>
+<table class="match">
  <tr> 
   <td>
     <% if @match.move_for_position(1) %>
-    <%= @match.move_for_position(1).value %>
+    <h1><%= @match.move_for_position(1).value %></h1>
     <% else %>
-    <%= link_to "make your mark here", make_move_path(@match, position: 1), method: :post %>
+    <%= link_to "___", make_move_path(@match, position: 1), method: :post %>
     <% end %>
   </td>
-
   <td> <% if @match.move_for_position(2) %>
-    <%= @match.move_for_position(2).value %>
+    <h1><%= @match.move_for_position(2).value %></h1>
     <% else %>
-    <%= link_to "make your mark here", make_move_path(@match, position: 2), method: :post %>
+    <%= link_to "___", make_move_path(@match, position: 2), method: :post %>
     <% end %>
   </td>
   <td><% if @match.move_for_position(3) %>
-    <%= @match.move_for_position(3).value %>
+    <h1><%= @match.move_for_position(3).value %></h1>
     <% else %>
-    <%= link_to "make your mark here", make_move_path(@match, position: 3), method: :post %>
+    <%= link_to "___", make_move_path(@match, position: 3), method: :post %>
     <% end %>
   </td>
 </tr>
+<hr>
 <tr> 
   <td><% if @match.move_for_position(4) %>
-    <%= @match.move_for_position(4).value %>
+    <h1><%= @match.move_for_position(4).value %></h1>
     <% else %>
-    <%= link_to "make your mark here", make_move_path(@match, position: 4), method: :post %>
+    <%= link_to "___", make_move_path(@match, position: 4), method: :post %>
     <% end %>
   </td>
-
   <td><% if @match.move_for_position(5) %>
-    <%= @match.move_for_position(5).value %>
+    <h1><%= @match.move_for_position(5).value %></h1>
     <% else %>
-    <%= link_to "make your mark here", make_move_path(@match, position: 5), method: :post %>
+    <%= link_to "___", make_move_path(@match, position: 5), method: :post %>
     <% end %>
   </td>
 
   <td><% if @match.move_for_position(6) %>
-    <%= @match.move_for_position(6).value %>
+    <h1><%= @match.move_for_position(6).value %></h1>
     <% else %>
-    <%= link_to "make your mark here", make_move_path(@match, position: 6), method: :post %>
+    <%= link_to "___", make_move_path(@match, position: 6), method: :post %>
     <% end %>
   </td>
 </tr>
 <tr> 
   <td>
     <% if @match.move_for_position(7) %>
-    <%= @match.move_for_position(7).value %>
+    <h1><%= @match.move_for_position(7).value %></h1>
     <% else %>
-    <%= link_to "make your mark here", make_move_path(@match, position: 7), method: :post %>
+    <%= link_to "___", make_move_path(@match, position: 7), method: :post %>
     <% end %>
   </td>
   <td>
     <% if @match.move_for_position(8) %>
-    <%= @match.move_for_position(8).value %>
+    <h1><%= @match.move_for_position(8).value %></h1>
     <% else %>
-    <%= link_to "make your mark here", make_move_path(@match, position: 8), method: :post %>
+    <%= link_to "___", make_move_path(@match, position: 8), method: :post %>
     <% end %>
   </td>
   <td>
     <% if @match.move_for_position(9) %>
-    <%= @match.move_for_position(9).value %>
+    <h1><%= @match.move_for_position(9).value %></h1>
     <% else %>
-    <%= link_to "make your mark here", make_move_path(@match, position: 9), method: :post %>
+    <%= link_to "___", make_move_path(@match, position: 9), method: :post %>
     <% end %>
   </td>
 </tr>

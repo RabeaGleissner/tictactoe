@@ -5,6 +5,7 @@ class MatchesController < ApplicationController
   def index
   @winner_match = Match.where(winner_id: current_user.id)
   @loser_match = Match.where(loser_id: current_user.id)
+  @incomplete_matches = Match.where(completed: nil)
 
 
   end
@@ -18,9 +19,7 @@ def new_move
   @match = Match.find(params[:id])
   @move = Move.new(user_id: current_user.id, position: params[:position], value: @match.value_for_player(current_user), match_id: @match.id)
   if @move.save 
-    # format.html { 
-      redirect_to @match, notice: 'Move list was successfully updated.' 
-    # }
+      redirect_to @match, notice: 'Good move.' 
   else
     puts "there are errors!"
     render :show

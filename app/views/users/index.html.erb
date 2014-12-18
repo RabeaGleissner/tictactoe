@@ -1,20 +1,21 @@
 <h2>Leaderboard</h2>
 
-<% @users.each do |user| %>
-
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Wins</th>
-  </tr>
-  <tr>
-    <td><%= user.name %></td>
-    <td><% total_wins = user.count_users_x_matches(user.id) + user.count_users_o_matches(user.id) %>
-      <%= total_wins %>
-     
-    </td>
-  </tr>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Wins</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name ? user.name : "No name" %></td>
+      <td><%= user.total_wins %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 
 
-<% end %>
+

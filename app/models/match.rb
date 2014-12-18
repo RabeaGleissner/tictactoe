@@ -4,6 +4,11 @@ class Match < ActiveRecord::Base
   belongs_to :player_o, class_name: 'User', foreign_key: 'player_o_id'
   belongs_to :winner, class_name: 'User'
 
+  def incomplete_matches
+    complete == false 
+  end
+
+
   def value_for_player(user)
     case 
     when user == player_x
