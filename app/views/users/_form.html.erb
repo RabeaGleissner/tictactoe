@@ -1,15 +1,16 @@
 
-<h2>Update your profile details</h2>
-
+<div class="form">
 <%= f.label :name %>
-<%= f.text_field :name %>
-
-<%= f.label :description %>
-<%= f.text_field :description %>
-
-<%= f.label :image, 'Profile photo' %>
-<%= f.text_field :image %>
-
-
-
-
+<%= f.text_field :name, class: "text_field" %>
+</div>
+<div class="form">
+<%= f.label :description, class: "description_label" %>
+<%= f.text_area :description, class: "description" %>
+</div>
+<!-- <div class="form">
+<%#= f.label :image, 'Profile photo' %>
+<%#= f.text_field :image %>
+</div> -->
+<div class="button">
+<%= f.submit 'Update' %>
+</div>

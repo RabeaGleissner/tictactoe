@@ -23,15 +23,84 @@
  nav li {
    display: inline-block;
    padding-right:10px;
+   background-color:#29498e;
  }
+tr {
+  border:10px;
 
+}
  nav ul {
    padding-left:0px;
  }
 
+ nav a {
+  color: white;
+  text-decoration: none;
+  padding:10px;
+  display: inline-block;
+ }
+ 
  .wrapper {
   margin: 0 auto;
   width: 600px;
-  background-color: rgba(245,255,250,0.8);
+  background-color: rgba(138,163,200,0.4);
   padding: 20px;
  }
+
+.form {
+  padding: 10px;
+}
+
+ .text_field, select {
+   display: inline-block;
+   width: 200px;
+   font-size: 14px;
+   padding: 5px;
+   border-color: #123582;
+   font-family: 'Amaranth', sans-serif;
+ }
+
+ label  {
+  width:100px;
+   display: inline-block;
+ }
+
+ .description {
+  height: 60px;
+  width: 200px;
+  font-size: 14px;
+  padding: 5px;
+  border-color: #123582;
+  font-family: 'Amaranth', sans-serif;
+ }
+
+ .button {
+  width: 320px;
+  float: right;
+  padding: 10px;
+  border-color: #123582;
+  font-family: 'Amaranth', sans-serif;
+  font-size: 14px;
+ }
+
+tr {
+  width:100px;
+}
+
+ td {
+  width: 200px;
+ }
+
+.field input, textarea {
+  width: 200px;
+  font-size: 14px;
+  padding: 5px;
+  border-color: #123582;
+  font-family: 'Amaranth', sans-serif;
+}
+
+.field label {
+  width: 200px;
+
+}
+

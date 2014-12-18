@@ -1,17 +1,18 @@
 <h2>Leaderboard</h2>
 
-This page will contain a list of all users and the number of their wins in descending order.
-
 <% @users.each do |user| %>
 
 <table>
   <tr>
-  <th>Name</th>
-  <th>Wins</th>
+    <th>Name</th>
+    <th>Wins</th>
   </tr>
   <tr>
-  <td><%= user.name %></td>
-  <td><%#= user.winner_id.count %></td>
+    <td><%= user.name %></td>
+    <td><% total_wins = user.count_users_x_matches(user.id) + user.count_users_o_matches(user.id) %>
+      <%= total_wins %>
+     
+    </td>
   </tr>
 </table>
 

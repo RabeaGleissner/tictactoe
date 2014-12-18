@@ -24,12 +24,12 @@ class Move < ActiveRecord::Base
 
   def user_turn
     if match.moves.any?
-      errors.add(:value, 'not your turn') if match.moves.last.user_id == user_id
+      errors.add(user.name,", it's not your turn. Sorry. *hugs*") if match.moves.last.user_id == user_id
     end
   end
 
   def user_in_this_game
-    errors.add(:user_id, 'you are not part of this game') unless match.players_ids.include?(user_id)
+    errors.add(:user_id, "Unfortunately you're not part of this game.") unless match.players_ids.include?(user_id)
   end
 
   def check_if_drawn

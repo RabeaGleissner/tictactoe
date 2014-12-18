@@ -1,8 +1,8 @@
 <h2>Who do you want to play against?</h2>
 
 <%= form_for @match do |f| %>
-<%= f.label :player_o_id, "Choose another user:" %>
-<%= f.collection_select(:player_o_id, User.all, :id, :name) %>
+<%= f.label :player_o_id, "Pick a player:" %>
+<%= f.collection_select(:player_o_id, @users, :id, :name) %>
 
 <%= f.submit 'Select' %></form>
 <% end %>

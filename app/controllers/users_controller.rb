@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   
 def index
   @users = User.all
+  @matches = Match.all
+
 end
 
   def show

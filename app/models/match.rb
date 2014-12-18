@@ -39,7 +39,7 @@ class Match < ActiveRecord::Base
   end
 
   def check_if_won
-    puts 'inside win check'
+
     win_arrays = [ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
 
     player_x_moves = moves.where(user_id: player_x_id) 
@@ -56,14 +56,14 @@ class Match < ActiveRecord::Base
          intersection_o = (player_o_positions & win_array)
 
          if intersection_x.count == 3
-          puts 'x has won'
           self.winner_id = player_x_id
+          self.loser_id = player_o_id
           self.completed = true
           save
           return true
         elsif intersection_o.count == 3
-          puts 'o has won'
           self.winner_id = player_o_id
+          self.loser_id = player_x_id
           self.completed = true
           save
           return true

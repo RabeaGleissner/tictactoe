@@ -10,5 +10,16 @@ class User < ActiveRecord::Base
 
   has_many :moves
 
+  def count_users_x_matches(user_id)
+    x_matches.where(winner_id: user_id).count
+  end
+
+
+def count_users_o_matches(user_id)
+  o_matches.where(winner_id: user_id).count
+end
+
 
 end
+
+

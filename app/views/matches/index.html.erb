@@ -1,30 +1,45 @@
 <h2>My match history</h2>
 
-This page will show a list of the user's matches.
-
-
-<br> <br>
-
+<% if @winner_match.any? %>
+<h3>Matches I have won :)</h3>
 <table>
-  
   <tr>
-    <th>Who was playing?</th> <!-- user_id which is not my own -->
-    <th>How long ago?</th>   
-    <th>Name of winner</th> <!-- if my id equals loser_id, display loser. if my id equals winner_id, display winner. -->
+    <td>Loser</td> 
+    <td>How long ago?</td>   
+    <td>Name of winner</td> 
   </tr>
 
-<p>Matches I have won :)</p>
-  <% if @winner_match %>
   <% @winner_match.map do |match| %>
+  <tr>
+    <td><%= User.find(match.loser_id).name%></td>
+    <td><%= time_ago_in_words(match.created_at)  %></td>
+    <td><%= User.find(match.winner_id).name %>
+    </td>
+    <% end %>  
+  </tr>
+</table>
+
+<h3>Matches I have lost :(</h3>
+<table>
+  <tr>
+    <td>Winner</td> 
+    <td>How long ago?</td>   
+    <td>Name of winner</td>
+  </tr>
+
+  <% if @loser_match %>
+  <% @loser_match.map do |match| %>
 
   <tr>
-    <td><%= name = User.find(user_id = match.player_x_id) %></td>
+    <td><%= User.find(match.loser_id).name%></td>
     <td><%= time_ago_in_words(match.created_at)  %></td>
-    <td><% winner = User.find(user_id = match.winner_id)%>
-      <%= winner.name %>
+    <td><%= User.find(match.winner_id).name %>
+
     </td>
     <% end %> 
     <% end %>
+    <% else %>
+    <p>You haven't played any matches! </p>
+    <% end %>
   </tr>
-
 </table>
