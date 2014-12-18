@@ -7,10 +7,10 @@
 <%= f.label :description, class: "description_label" %>
 <%= f.text_area :description, class: "description" %>
 </div>
-<!-- <div class="form">
-<%#= f.label :image, 'Profile photo' %>
-<%#= f.text_field :image %>
-</div> -->
+<div class="form">
+<%= f.label :image %>
+<%= f.file_field :image, class: "image" %>
+</div>
 <div class="button">
 <%= f.submit 'Update' %>
 </div>

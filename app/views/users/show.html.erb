@@ -1,8 +1,8 @@
 <h2>User profile page</h2>
 
 <p>Name: <%= @user.name %></p>
-<!-- <p>Image: </p> -->
+<p><%= image_tag @user.image.detail.url %></p>
 <p>Email: <%= @user.email %> </p>
-<p>Description: <%= @user.description %></p>
+<p>About me: <%= @user.description %></p>
 
 <%= link_to 'Edit my profile', edit_user_path %>
