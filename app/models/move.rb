@@ -13,7 +13,7 @@ class Move < ActiveRecord::Base
 
   def match_active
     if !match.match_active
-      errors.add(:base, 'Match is over.')
+      errors.add(:base, 'Match is over. *hugs*')
     end
   end
 

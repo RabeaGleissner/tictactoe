@@ -12,7 +12,7 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= image_tag user.image.thumb.url %></td>
-      <td><%= user.name ? user.name : "No name" %></td>
+      <td><%= link_to "#{user.name}", user_path(user.id) %></td>
       <td><%= user.total_wins %></td>
     </tr>
   <% end %>

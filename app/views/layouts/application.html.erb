@@ -10,33 +10,33 @@
 <body>
   <div class="wrapper">
     <h1>Tic Tac Toe XOXO </h1>
-  <nav>
-    <ul>
-      <li><%= link_to 'Home', root_path %></li>
-      
-      <% if user_signed_in? %>
-      <li> <%= link_to 'Leaderboard', users_path %></li>
-      <li><%= link_to 'My matches', matches_path %></li>
-      <li><%= link_to 'My profile', user_path(current_user.id) %></li>
-      <%end%>
-    </ul>
-  </nav>
-  <div class='login'>
+    <nav>
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        
+        <% if user_signed_in? %>
+        <li> <%= link_to 'Leaderboard', users_path %></li>
+        <li><%= link_to 'My matches', matches_path %></li>
+        <li><%= link_to 'My profile', user_path(current_user.id) %></li>
+        <%end%>
+      </ul>
+    </nav>
+    <div class='login'>
       <% if current_user %>
       Logged in as: <strong><%= current_user.name %></strong>!
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to "Sign In", new_user_session_path %>
-        <%= link_to "Register", new_user_registration_path %>
+      <%= link_to "Sign In", new_user_session_path %>
+      <%= link_to "Register", new_user_registration_path %>
       <% end %>
     </div> <!-- closing login div -->
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
 
-<%= yield %>
-</div> <!-- closing wrapper -->
+    <%= yield %>
+  </div> <!-- closing wrapper -->
 
 </body>
 </html>

@@ -4,6 +4,27 @@ class Match < ActiveRecord::Base
   belongs_to :player_o, class_name: 'User', foreign_key: 'player_o_id'
   belongs_to :winner, class_name: 'User'
 
+  def computer_position
+    all_positions = [1,2,3,4,5,6,7,8,9]
+    player_x_moves = moves.where(user_id: player_x_id) 
+    player_o_moves = moves.where(user_id: player_o_id)
+
+    x_positions = player_x_moves.map do
+      |move| move.position end
+     o_positions = player_o_moves.map do
+       |move| move.position end
+
+    filled_positions = x_positions + o_positions
+
+    moves.map do |move|
+      open_positions = all_positions - filled_positions
+
+      # move.position.to_s.split('').map(&:to_i) 
+      computer_position = open_positions.first
+    end
+  end
+
+
   def incomplete_matches
     complete == false 
   end
@@ -76,26 +97,4 @@ class Match < ActiveRecord::Base
       end
       false
     end
-
-    # def winner_id
-    #   if check_if_won == true
-    #     winner_id = @match.moves.user_id
-    #   end
-    # end
-
-    # def loser_id
-    #   if check_if_won == true
-    #     loser_id = @match.moves.last.user_id
-    #   end
-    # end
-
-
-  # def new_match(player_x, player_o)
-  #   Match.create(player_x_id: params[:player_x], player_o_id: params[:player_o])
-  # end
-
-  # def add_move(user, position, value)
-  #   Move.create(user_id: user.id, match_id: id, position: position, value: value)
-  # end
-
 end
