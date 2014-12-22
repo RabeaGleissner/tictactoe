@@ -3,8 +3,10 @@ class MatchesController < ApplicationController
 
 
   def index
-    @winner_match = Match.where(winner_id: current_user.id)
-    @loser_match = Match.where(loser_id: current_user.id)
+    winner_matches = Match.where(winner_id: current_user.id)
+    @winner_match = winner_matches.order("created_at DESC")
+    loser_matches = Match.where(loser_id: current_user.id)
+    @loser_match = loser_matches.order("created_at DESC")
     @incomplete_matches = Match.where(completed: nil)
   end
 

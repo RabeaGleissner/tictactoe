@@ -1,21 +1,24 @@
 <h2>Leaderboard</h2>
+<%= search_form_for @q do |f|%>
+
+<% end %>
 
 <table>
   <thead>
     <tr>
       <td><strong>Profile pic</strong></td>
-      <td><strong>Name</strong></td>
-      <td><strong>Wins</strong></td>
+      <td><strong><%= sort_link @q, :name %></strong></td>
+      <td><strong>Total wins</strong></td>
     </tr>
   </thead>
   <tbody>
-  <% @users.each do |user| %>
+    <% @users.each do |user| %>
     <tr>
       <td><%= image_tag user.image.thumb.url %></td>
       <td><%= link_to "#{user.name}", user_path(user.id) %></td>
       <td><%= user.total_wins %></td>
     </tr>
-  <% end %>
+    <% end %>
   </tbody>
 </table>
 

@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
+
+
   def total_wins 
     count_users_x_matches(self.id) + count_users_o_matches(self.id)
   end

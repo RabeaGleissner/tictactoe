@@ -19,7 +19,6 @@ class Match < ActiveRecord::Base
     moves.map do |move|
       open_positions = all_positions - filled_positions
 
-      # move.position.to_s.split('').map(&:to_i) 
       computer_position = open_positions.first
     end
   end
