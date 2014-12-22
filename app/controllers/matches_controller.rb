@@ -23,10 +23,6 @@ class MatchesController < ApplicationController
        @comp_move.save if @match.match_active
       redirect_to @match, notice: 'Computer moved as well.' 
 
-    elsif @match.player_o_id == 13 && @move.save && @match.match_active != false
-
-      redirect_to @match, notice: 'Good move.'
-
     elsif @match.player_o_id != 13 && @move.save 
       redirect_to @match, notice: 'Good move.'
 
