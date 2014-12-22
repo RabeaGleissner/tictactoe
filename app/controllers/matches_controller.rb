@@ -7,12 +7,14 @@ class MatchesController < ApplicationController
     @winner_match = winner_matches.order("created_at DESC")
     loser_matches = Match.where(loser_id: current_user.id)
     @loser_match = loser_matches.order("created_at DESC")
-    @incomplete_matches = Match.where(completed: nil)
+    incomplete_match = Match.where(completed: nil)
+    @incomplete_matches = incomplete_match.order("created_at DESC")
+
   end
 
   def new
     @match = Match.new
-    @users = User.where.not(id: current_user.id)
+    @users = User.where.not(id: current_user.id).order("name ASC")
   end
 
   def new_move
