@@ -13,6 +13,7 @@ gem 'cancancan'
 gem 'ransack'
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
+gem 'acts_as_commentable'
 
 gem 'rails_12factor', group: :production
 

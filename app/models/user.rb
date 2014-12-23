@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,11 +9,13 @@ class User < ActiveRecord::Base
   has_many :o_matches, class_name:'Match', foreign_key: :player_o_id
   has_many :wins, class_name:'Match', foreign_key: :winner
   has_many :moves
+  has_many :comments, dependent: :destroy
 
   validates :name, presence: true
   validates :name, uniqueness: true
 
-
+  acts_as_commentable
+  
 
   def total_wins 
     count_users_x_matches(self.id) + count_users_o_matches(self.id)
