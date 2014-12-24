@@ -13,25 +13,23 @@
 
   <%= link_to 'Edit my profile', edit_user_path %>
 
+<hr>
+
   <h4>Leave a comment for <%= @user.name %>:</h4>
-
     <%= form_for  @user.comments.new, html: {class: "comment_form"} do |f| %>
-    <%= render partial: "comments/form", locals: { f: f } %>
+      <%= render partial: "comments/form", locals: { f: f } %>
+      <%= f.submit "Add Comment!" %>
+    <% end %>
 
-  <%= f.submit "Add Comment!" %>
-  <% end %>
+
+  <h4><%= @user.name%>'s comments</h4>
+    <div><% @user.comments.all.each do |comment| %>
+    <%= comment.comment %></div>
+    <div>Posted by: <%= comment.user.try :name %> on <%= comment.created_at.strftime("%d/%m/%Y") if comment.created_at %> </div>
 
 
-  <h4>Fred's comments</h4>
-
-  <% user.comments.all.each do |comment| %>
-    <br>
-    <%= comment.comment %>
-    <br>
-    <p>Posted by: <%= comment.user.try :name %> on <%= comment.created_at.strftime("%d/%m/%Y") if comment.created_at %> 
 
     
-      <%#= link_to 'Destroy', user_album_track_comment_path(@track.user, @track.album_id, @track, comment), method: :delete, data: { confirm: 'Are you sure to delete the comment?' }, class: "button tiny" if can?(:destroy, comment) %> </p>
-
+     <div> <%= link_to "Delete comment", comment_path(comment), method: :delete, data: { confirm: 'Are you sure to delete the comment?' } %> </div>
     <% end %>
 

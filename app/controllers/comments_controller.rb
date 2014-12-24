@@ -8,12 +8,13 @@ class CommentsController < ApplicationController
     redirect_to [@user]
   end   
 
-    # def destroy
-    #   track_id = @comment.commentable_id
-    #   track = Track.find(track_id)
-    #   @comment.destroy
-    #   redirect_to [track.user, track.album, track]
-    # end
+    def destroy
+
+      @comment = Comment.find(params[:id])
+      # user_id = @comment.commentable_id
+      @comment.destroy
+      redirect_to(users_path)
+    end
 
     def comment_params
       params.require(:comment).permit(:comment, :userid)
