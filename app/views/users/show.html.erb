@@ -1,15 +1,37 @@
 <h2>User profile page</h2>
 
 <% if @user && @user.errors.any?  %>
- <h3>
-    <% @user.errors.full_messages.each do |message| %>
-     <%= message %></h3>
+    <h3><% @user.errors.full_messages.each do |message| %>
+    <%= message %></h3>
     <% end %>
 <% end %>
 
-<p>Name: <%= @user.name %></p>
-<p><%= image_tag @user.image.detail.url %></p>
-<p>Email: <%= @user.email %> </p>
-<p>About me: <%= @user.description %></p>
+  <p>Name: <%= @user.name %></p>
+  <p><%= image_tag @user.image.detail.url %></p>
+  <p>Email: <%= @user.email %> </p>
+  <p>About me: <%= @user.description %></p>
 
-<%= link_to 'Edit my profile', edit_user_path %>
+  <%= link_to 'Edit my profile', edit_user_path %>
+
+  <h4>Leave a comment for <%= @user.name %>:</h4>
+
+    <%= form_for  @user.comments.new, html: {class: "comment_form"} do |f| %>
+    <%= render partial: "comments/form", locals: { f: f } %>
+
+  <%= f.submit "Add Comment!" %>
+  <% end %>
+
+
+  <h4>Fred's comments</h4>
+
+  <% user.comments.all.each do |comment| %>
+    <br>
+    <%= comment.comment %>
+    <br>
+    <p>Posted by: <%= comment.user.try :name %> on <%= comment.created_at.strftime("%d/%m/%Y") if comment.created_at %> 
+
+    
+      <%#= link_to 'Destroy', user_album_track_comment_path(@track.user, @track.album_id, @track, comment), method: :delete, data: { confirm: 'Are you sure to delete the comment?' }, class: "button tiny" if can?(:destroy, comment) %> </p>
+
+    <% end %>
+
