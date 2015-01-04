@@ -17,11 +17,11 @@
 <% end %>
 
 <% if @match.winner_id && @match.winner_id == current_user.id %>
-<h2><%= "Well done, #{User.find(@match.winner_id).name}, you won! *hugs and kisses*"%></h2>
+<h3 class="game_over"><%= "Well done, #{User.find(@match.winner_id).name}, you won! *hugs and kisses*"%></h2>
 <% elsif @match.winner_id && @match.winner_id != current_user.id %>
-<h2><%= "Sorry, you lost... *hugs*" %></h2>
+<h3 class="game_over"><%= "Sorry, you lost... *hugs*" %></h2>
 <% elsif @match.completed == true && @match.winner_id == nil  %>
-<h2><%= "It's a draw! *kisses*" %></h2>
+<h3 class="game_over"><%= "It's a draw! *kisses*" %></h2>
 <% end %>
 <br>
 
