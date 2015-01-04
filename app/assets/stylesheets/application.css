@@ -45,15 +45,13 @@ tr {
   background-color: rgba(138,163,200,0.5);
   padding: 20px;
   border-radius: 10px;
-  min-height:400px;
  }
 
-/*.new_match {
-  padding:10px;
-  background-color:#5959AB;
-  color:white;
-  text-decoration:none;
-}*/
+ .delete{
+  float: right;
+  padding-right: 20px;
+ }
+
 .darth{
   margin: 0 auto;
   width: 550px;
@@ -104,11 +102,12 @@ tr {
  }
 
 .field input, textarea {
-  width: 200px;
+  width: 70%;
   font-size: 14px;
   padding: 5px;
   border-color: #123582;
   font-family: 'Amaranth', sans-serif;
+  border-radius: 5px;
 }
 
 .field label {
@@ -145,4 +144,12 @@ hr {
 
 .game_over {
   background-color: pink;
+}
+
+.comment {
+  background-color: rgba(255,255,255,0.5);
+  width: 90%;
+  padding:10px;
+  margin-bottom: 10px;
+
 }
