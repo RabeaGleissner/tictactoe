@@ -19,7 +19,7 @@ class Match < ActiveRecord::Base
     moves.map do |move|
       open_positions = all_positions - filled_positions
 
-      computer_position = open_positions.first
+      computer_position = open_positions.shuffle.first
     end
   end
 

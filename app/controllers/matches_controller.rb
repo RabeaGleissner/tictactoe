@@ -25,7 +25,7 @@ class MatchesController < ApplicationController
       @comp_move = Move.new(user_id: 13, position: @match.computer_position.first, value: 'o', match_id: @match.id)
 
        @comp_move.save if @match.match_active
-      redirect_to @match, notice: 'Computer moved as well.' 
+      redirect_to @match, notice: 'OK, your turn again.' 
 
     elsif @match.player_o_id != 13 && @move.save 
       redirect_to @match, notice: 'Good move.'
