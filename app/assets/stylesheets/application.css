@@ -151,5 +151,7 @@ hr {
   width: 90%;
   padding:10px;
   margin-bottom: 10px;
-
+}
+.comment-content {
+  font-size:18px;
 }

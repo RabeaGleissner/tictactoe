@@ -11,24 +11,30 @@
   <p>Email: <%= @user.email %> </p>
   <p>About me: <%= @user.description %></p>
 
+<% if @user == current_user %>
   <p class="delete"><%= link_to 'Edit my profile', edit_user_path %></p>
   <br>
+  <% end %>
 
-
+  <% if @user != current_user %>
   <h2>Leave a comment for <%= @user.name %>:</h2>
   <%= form_for  @user.comments.new, html: {class: "comment_form"} do |f| %>
   <%= render partial: "comments/form", locals: { f: f } %>
   <%= f.submit "Add Comment!" %>
   <% end %>
+  <% end %>
 
-
+  <% if @user.comments.count > 0 %>
   <h2><%= @user.name%>'s comments</h2>
   <% @user.comments.all.each do |comment| %>
   <div class="comment">
-   <h4> <%= comment.comment %></h4>
+   <p class="comment-content"> <%= comment.comment %></p>
    <div>Posted by: <%= comment.user.try :name %> on <%= comment.created_at.strftime("%d/%m/%Y") if comment.created_at %> </div>    
+   <% if @user == current_user %>
    <div class="delete"> <%= link_to "Delete comment", comment_path(comment), method: :delete, data: { confirm: 'Are you sure to delete the comment?' } %> </div>
+   <% end %>
    <br>
  </div>
-   <% end %>
+ <% end %>
+ <% end %>
 
