@@ -14,6 +14,7 @@ gem 'ransack'
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
 gem 'acts_as_commentable'
+gem 'fog', '~> 1.3.1'
 
 gem 'rails_12factor', group: :production
 
