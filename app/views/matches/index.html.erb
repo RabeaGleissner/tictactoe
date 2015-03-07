@@ -49,16 +49,18 @@
      <td><strong>How long ago?</strong></td>   
      <td><strong>Played against?</strong></td>
     </tr>
-   <% if @loser_match %>
-   <% @loser_match.map do |match| %>
-   <tr>
-    <td><%= time_ago_in_words(match.created_at)  %></td>
-    <td><%= User.find(match.winner_id).name %></td>
-   </tr>
-    <% end %> 
+
+     <% if @loser_match %>
+         <% @loser_match.map do |match| %>
+          <tr>
+          <td><%= time_ago_in_words(match.created_at)  %></td>
+          <td><%= User.find(match.winner_id).name %></td>
+          </tr>
+      <% end %> 
     <% else %>
     <p>You have not lost any matches! *kisses* </p>
     <% end %>
+    
   </tr>
 </table>
 <% end %>
