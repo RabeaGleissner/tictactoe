@@ -7,7 +7,7 @@ class MatchesController < ApplicationController
     @winner_match = winner_matches.order("created_at DESC")
     loser_matches = Match.where(loser_id: current_user.id)
     @loser_match = loser_matches.order("created_at DESC")
-    
+
     incomplete_match = Match.where(completed: nil)
     matches = incomplete_match.where("player_x_id = ? or player_o_id = ?", current_user.id, current_user.id)
     @incomplete_matches = matches.order("created_at DESC")
@@ -22,13 +22,13 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @move = Move.new(user_id: current_user.id, position: params[:position], value: @match.value_for_player(current_user), match_id: @match.id)
 
-    if @match.player_o_id == 13 && @move.save 
-      @comp_move = Move.new(user_id: 13, position: @match.computer_position.first, value: 'o', match_id: @match.id)
+    if User.find(@match.player_o_id).name == "Computer" && @move.save 
+      @comp_move = Move.new(user_id: @match.player_o_id, position: @match.computer_position.first, value: 'o', match_id: @match.id)
 
        @comp_move.save if @match.match_active
       redirect_to @match, notice: 'OK, your turn again.' 
 
-    elsif @match.player_o_id != 13 && @move.save 
+    elsif User.find(@match.player_o_id).name != "Computer" && @move.save 
       redirect_to @match, notice: 'Good move.'
 
     else

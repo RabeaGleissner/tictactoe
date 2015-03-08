@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   mount_uploader :image, UserImageUploader
-  has_many :x_matches, class_name:'Match', foreign_key: :player_x_id
-  has_many :o_matches, class_name:'Match', foreign_key: :player_o_id
+  has_many :x_matches, class_name:'Match', foreign_key: :player_x_id, dependent: :destroy
+  has_many :o_matches, class_name:'Match', foreign_key: :player_o_id, dependent: :destroy
   has_many :wins, class_name:'Match', foreign_key: :winner
-  has_many :moves
+  has_many :moves, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   validates :name, presence: true

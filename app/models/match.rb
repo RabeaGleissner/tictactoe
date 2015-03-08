@@ -52,10 +52,6 @@ class Match < ActiveRecord::Base
     !winner_id && moves.count < 9
   end
 
-  # def match_over
-  #   check_if_drawn || check_if_won
-  # end
-
   def check_if_drawn
     if moves.count == 9 && !winner_id
       self.completed = true
