@@ -6,6 +6,10 @@ Users can play against each other or against the computer.
 
 I also implemented the Acts-as-commentable gem for user profile and the Ransack gem to sort the leaderboard by user names.
 
+## Play it
+
+I'm hosting this on Heroku at: [tictactoe-xoxo.herokuapp.com](http://tictactoe-xoxo.herokuapp.com/)
+
 ## Technology used
 
 Ruby on Rails, HTML, CSS. I didn't know JavaScript when I created this in November 2014, so users can only see updates when the refresh the page.
